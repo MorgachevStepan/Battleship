@@ -21,7 +21,7 @@ public class ShipValidator {
         String orientation;
         do{
             System.out.println("Как вы хотите разместить корабль горизонтально (HORIZONTAL) или вертикально (VERTICAL)");
-            orientation = scanner.nextLine().trim();
+            orientation = scanner.nextLine();
         } while (!(Orientation.HORIZONTAL.toString().equals(orientation) || Orientation.VERTICAL.toString().equals(orientation)));
         return Orientation.valueOf(orientation);
     }
@@ -30,8 +30,8 @@ public class ShipValidator {
         Coordinates coordinates;
         do{
             System.out.println("Введите начальную позицию для корабля");
-            int yCoord = scanner.nextInt();
-            int xCoord = scanner.nextInt();
+            int yCoord = scanner.nextInt() + 1;
+            int xCoord = scanner.nextInt() + 1;
             coordinates = new Coordinates(xCoord, yCoord);
         }while (!isValidCoordinates(coordinates, ship.getShipLives(), ship.getOrientation()));
         return coordinates;
@@ -42,13 +42,13 @@ public class ShipValidator {
         int yCoord = coordinates.getyCord();
         if(Orientation.HORIZONTAL.equals(orientation)){
             for(int i = 0; i < shipLives; i++){
-                if(!(checkPositionHorizontal(yCoord, xCoord + i) && isInside(xCoord, yCoord)))
+                if(!(isInside(xCoord + i, yCoord) && checkPositionHorizontal(yCoord, xCoord + i)))
                     return false;
             }
         }
         else{
             for(int i = 0; i < shipLives; i++){
-                if(!(checkPositionVertical(yCoord + i, xCoord) && isInside(xCoord, yCoord)))
+                if(!(isInside(xCoord, yCoord + i) && checkPositionVertical(yCoord + i, xCoord)))
                     return false;
             }
         }
@@ -73,6 +73,6 @@ public class ShipValidator {
     }
 
     private boolean isInside(int xPosition, int yPosition) {
-        return xPosition <= 9 && xPosition >= 0 && yPosition <= 9 && yPosition >= 0;
+        return xPosition <= 10 && xPosition >= 1 && yPosition <= 10 && yPosition >= 1;
     }
 }

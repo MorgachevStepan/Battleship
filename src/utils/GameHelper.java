@@ -1,3 +1,4 @@
+/*
 package utils;
 
 import Player.Player;
@@ -6,10 +7,12 @@ import ships.Orientation;
 
 import java.util.Scanner;
 
+*/
 /**
  * @author Stepan Morgachev
  * @date 13.09.2023 15:44
- */
+ *//*
+
 public class GameHelper {
     private Field firstPlayerField;
     private Field secondPlayerField;
@@ -75,3 +78,4 @@ public class GameHelper {
 
 
 }
+*/

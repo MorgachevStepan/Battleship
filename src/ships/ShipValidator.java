@@ -1,6 +1,7 @@
 package ships;
 
 import field.Coordinates;
+import field.PieceOfField;
 
 import java.util.Scanner;
 
@@ -10,14 +11,16 @@ import java.util.Scanner;
  */
 public class ShipValidator {
     private Scanner scanner;
+    private PieceOfField[][] field;
 
-    public ShipValidator(){
+    public ShipValidator(PieceOfField[][] field){
         scanner = new Scanner(System.in);
+        this.field = field;
     }
     public Orientation askShipOrientation() {
-        System.out.println("Как вы хотите разместить корабль горизонтально (HORIZONTAL) или вертикально (VERTICAL)");
         String orientation;
         do{
+            System.out.println("Как вы хотите разместить корабль горизонтально (HORIZONTAL) или вертикально (VERTICAL)");
             orientation = scanner.nextLine().trim();
         } while (!(Orientation.HORIZONTAL.toString().equals(orientation) || Orientation.VERTICAL.toString().equals(orientation)));
         return Orientation.valueOf(orientation);
@@ -25,31 +28,48 @@ public class ShipValidator {
 
     public Coordinates askShipCoordinates(Ship ship, Orientation orientation) {
         Coordinates coordinates;
-        System.out.println("Введите начальную позицию для корабля");
         do{
-            coordinates = new Coordinates(scanner.nextInt(), scanner.nextInt());
+            System.out.println("Введите начальную позицию для корабля");
+            int yCoord = scanner.nextInt();
+            int xCoord = scanner.nextInt();
+            coordinates = new Coordinates(xCoord, yCoord);
         }while (!isValidCoordinates(coordinates, ship.getShipLives(), ship.getOrientation()));
         return coordinates;
     }
 
     private boolean isValidCoordinates(Coordinates coordinates, int shipLives, Orientation orientation) {
-        int xDifferential = 0;
-        int yDifferential = 0;
-        int xPosition = coordinates.getxCord();
-        int yPosition = coordinates.getyCord();
-
-        if(Orientation.HORIZONTAL.equals(orientation))
-            xDifferential = 1;
-        else yDifferential = 1;
-
-        if(!isInside(xPosition, yPosition) || (!isInside(xPosition + shipLives, yPosition) && xDifferential == 1)
-           || (!isInside(xPosition, yPosition + shipLives) && yDifferential == 1)) {
-            return false;
+        int xCoord = coordinates.getxCord();
+        int yCoord = coordinates.getyCord();
+        if(Orientation.HORIZONTAL.equals(orientation)){
+            for(int i = 0; i < shipLives; i++){
+                if(!(checkPositionHorizontal(yCoord, xCoord + i) && isInside(xCoord, yCoord)))
+                    return false;
+            }
+        }
+        else{
+            for(int i = 0; i < shipLives; i++){
+                if(!(checkPositionVertical(yCoord + i, xCoord) && isInside(xCoord, yCoord)))
+                    return false;
+            }
         }
 
-        for (int i = 0; i < shipLives; i++);
+        return true;
+    }
 
-        return  false;
+    private boolean checkPositionVertical(int yCoord, int xCoord) {
+        return field[yCoord][xCoord].getIcon() != '@' && field[yCoord][xCoord + 1].getIcon() != '@'
+                && field[yCoord + 1][xCoord].getIcon() != '@' && field[yCoord - 1][xCoord].getIcon() != '@'
+                && field[yCoord - 1][xCoord - 1].getIcon() != '@' && field[yCoord - 1][xCoord + 1].getIcon() != '@'
+                && field[yCoord + 1][xCoord - 1].getIcon() != '@' && field[yCoord + 1][xCoord + 1].getIcon() != '@'
+                && yCoord <= 10;
+    }
+
+    private boolean checkPositionHorizontal(int yCoord, int xCoord) {
+        return field[yCoord][xCoord].getIcon() != '@' && field[yCoord][xCoord + 1].getIcon() != '@'
+                && field[yCoord + 1][xCoord].getIcon() != '@' && field[yCoord - 1][xCoord].getIcon() != '@'
+                && field[yCoord - 1][xCoord - 1].getIcon() != '@' && field[yCoord - 1][xCoord + 1].getIcon() != '@'
+                && field[yCoord + 1][xCoord - 1].getIcon() != '@' && field[yCoord + 1][xCoord + 1].getIcon() != '@'
+                && xCoord <= 10;
     }
 
     private boolean isInside(int xPosition, int yPosition) {

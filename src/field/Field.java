@@ -16,7 +16,6 @@ public class Field {
 
     private PieceOfField[][] field;
     private List<Ship> shipList;
-    private Admiral admiral;
 
     public Field() {
         field = new PieceOfField[FIELD_SIZE][FIELD_SIZE];
@@ -25,6 +24,8 @@ public class Field {
                 field[i][j] = new WaterField();
             }
         }
+        Admiral admiral = new Admiral(field);
+        admiral.arrangeShips();
     }
 
     public PieceOfField[][] getField() {

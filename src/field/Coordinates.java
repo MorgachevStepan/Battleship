@@ -15,16 +15,19 @@ public class Coordinates {
         this.yCord = yCord;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Coordinates that = (Coordinates) o;
-        return xCord == that.xCord && yCord == that.yCord;
+    public int getxCord() {
+        return xCord;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(xCord, yCord);
+    public void setxCord(int xCord) {
+        this.xCord = xCord;
+    }
+
+    public int getyCord() {
+        return yCord;
+    }
+
+    public void setyCord(int yCord) {
+        this.yCord = yCord;
     }
 }

@@ -16,4 +16,28 @@ public abstract class Ship {
         this.orientation = orientation;
         this.shipLives = shipLives;
     }
+
+    public Coordinates getPosition() {
+        return position;
+    }
+
+    public void setPosition(Coordinates position) {
+        this.position = position;
+    }
+
+    public Orientation getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(Orientation orientation) {
+        this.orientation = orientation;
+    }
+
+    public int getShipLives() {
+        return shipLives;
+    }
+
+    public void setShipLives(int shipLives) {
+        this.shipLives = shipLives;
+    }
 }

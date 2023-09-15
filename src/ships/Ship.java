@@ -44,13 +44,7 @@ public abstract class Ship {
     }
 
     public void getHit(){
-        if(shipLives > 0){
-            System.out.println("Вы попали по кораблю!!!");
-            shipLives--;
-        }
-        else{
-            System.out.println("Вы промахнулись(");
-        }
+        shipLives--;
     }
 
     public State getState(){

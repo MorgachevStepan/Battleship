@@ -34,8 +34,17 @@ public class Controller {
 
         State state = player.getField().getPieceOfField(coordinates.getxCord(), coordinates.getyCord()).shoot();
 
-        if(state == State.DESTROYED || state == State.HIT)
-            player.decrementLives();
+        switch (state){
+            case NO_HIT -> System.out.println("Вы промахнулись");
+            case HIT -> {
+                System.out.println("Попали по кораблю");
+                player.decrementLives();
+            }
+            case DESTROYED -> {
+                System.out.println("Вы уничтожили корабль");
+                player.decrementLives();
+            }
+        }
 
         fieldRender.render();
     }
@@ -44,7 +53,8 @@ public class Controller {
         int xCoord = coordinates.getxCord();
         int yCoord = coordinates.getyCord();
         if(xCoord > 10 || xCoord < 1 || yCoord > 10 || yCoord < 1
-                || player.getField().getPieceOfField(xCoord, yCoord).getIcon() == '*')
+                || player.getField().getPieceOfField(xCoord, yCoord).getIcon() == '*'
+                || player.getField().getPieceOfField(xCoord, yCoord).getIcon() == 'M')
             return false;
         else {
             return true;

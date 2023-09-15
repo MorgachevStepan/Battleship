@@ -9,30 +9,22 @@ import ships.State;
  */
 public class ShipField implements PieceOfField{
     private final Ship ship;
+    private boolean isHitten;
 
     public ShipField(Ship ship) {
         this.ship = ship;
+        isHitten = false;
     }
 
     @Override
     public char getIcon() {
-        System.out.println(ship.getShipLives());
-        State state = ship.getState();
-        char icon = ' ';
-        switch (state){
-            case NO_HIT: icon =  '@';
-                break;
-            case HIT:
-            case DESTROYED:
-                icon =  '*';
-                break;
-        }
-        return icon;
+        return isHitten ? '*' : '@';
     }
 
     @Override
     public State shoot() {
         ship.getHit();
+        isHitten = true;
         return ship.getState();
     }
 }

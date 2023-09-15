@@ -16,6 +16,7 @@ public class ShipField implements PieceOfField{
 
     @Override
     public char getIcon() {
+        System.out.println(ship.getShipLives());
         State state = ship.getState();
         char icon = ' ';
         switch (state){

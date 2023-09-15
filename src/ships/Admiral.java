@@ -48,15 +48,15 @@ public class Admiral {
 
     private void createFleet(){
         ships.add(new Battleship(DEFAULT_POSITION, DEFAULT_ORIENTATION));
+        /*ships.add(new Cruiser(DEFAULT_POSITION, DEFAULT_ORIENTATION));
         ships.add(new Cruiser(DEFAULT_POSITION, DEFAULT_ORIENTATION));
-        ships.add(new Cruiser(DEFAULT_POSITION, DEFAULT_ORIENTATION));
         ships.add(new Destroyer(DEFAULT_POSITION, DEFAULT_ORIENTATION));
         ships.add(new Destroyer(DEFAULT_POSITION, DEFAULT_ORIENTATION));
         ships.add(new Destroyer(DEFAULT_POSITION, DEFAULT_ORIENTATION));
         ships.add(new SpeedBoat(DEFAULT_POSITION, DEFAULT_ORIENTATION));
         ships.add(new SpeedBoat(DEFAULT_POSITION, DEFAULT_ORIENTATION));
         ships.add(new SpeedBoat(DEFAULT_POSITION, DEFAULT_ORIENTATION));
-        ships.add(new SpeedBoat(DEFAULT_POSITION, DEFAULT_ORIENTATION));
+        ships.add(new SpeedBoat(DEFAULT_POSITION, DEFAULT_ORIENTATION));*/
     }
 
     private void setShip(Ship ship){

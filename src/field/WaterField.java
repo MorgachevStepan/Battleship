@@ -15,7 +15,7 @@ public class WaterField implements PieceOfField{
 
     @Override
     public char getIcon() {
-        return isHitten ? '*' : '~';
+        return isHitten ? 'M' : '~';
     }
 
     @Override

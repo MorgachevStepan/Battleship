@@ -14,6 +14,7 @@ public class FieldRender {
         this.field = field;
     }
 
+
     public void render() {
         System.out.print("  |");
         for (Character character: FIELD_LETTERS)

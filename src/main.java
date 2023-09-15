@@ -1,4 +1,6 @@
+import Player.Player;
 import field.Field;
+import utils.Controller;
 
 /**
  * @author Stepan Morgachev
@@ -6,6 +8,10 @@ import field.Field;
  */
 public class main {
     public static void main(String[] args) {
-        Field field = new Field();
+        Player player = new Player();
+        Controller controller = new Controller(player);
+        while (player.isAlive()){
+            controller.fire();
+        }
     }
 }

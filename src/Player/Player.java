@@ -1,5 +1,6 @@
 package Player;
 
+import field.Field;
 import ships.Ship;
 
 import java.util.ArrayList;
@@ -11,9 +12,23 @@ import java.util.List;
  */
 public class Player {
     private int playerLives;
-    private List<Ship> ships;
+    private final Field field;
 
     public Player(){
-        ships = new ArrayList<>(); //TODO
+        playerLives = 20;
+        field = new Field();
+        field.initialize();
+    }
+
+    public Field getField(){
+        return field;
+    }
+
+    public void decrementLives(){
+        playerLives--;
+    }
+
+    public boolean isAlive(){
+        return playerLives > 0;
     }
 }

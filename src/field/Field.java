@@ -2,6 +2,7 @@ package field;
 
 import ships.Admiral;
 import ships.Ship;
+import utils.Controller;
 
 import java.util.List;
 
@@ -13,7 +14,6 @@ public class Field {
     private static final int FIELD_SIZE = 12;
 
     private PieceOfField[][] field;
-    private List<Ship> shipList;
 
     public Field() {
         field = new PieceOfField[FIELD_SIZE][FIELD_SIZE];
@@ -29,7 +29,18 @@ public class Field {
                 field[i][j] = new WaterField();
             }
         }
+    }
+
+    public void initialize(){
         Admiral admiral = new Admiral(field);
         admiral.arrangeShips();
+    }
+
+    public PieceOfField getPieceOfField(int x, int y){
+        return field[y][x];
+    }
+
+    public PieceOfField[][] getField(){
+        return field;
     }
 }

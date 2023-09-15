@@ -1,6 +1,7 @@
 package field;
 
 import ships.Ship;
+import ships.State;
 
 /**
  * @author Stepan Morgachev
@@ -15,13 +16,13 @@ public class ShipField implements PieceOfField{
 
     @Override
     public char getIcon() {
-        String state = ship.getState();
+        State state = ship.getState();
         char icon = ' ';
         switch (state){
-            case "No hit": icon =  '@';
+            case NO_HIT: icon =  '@';
                 break;
-            case "Hit" :
-            case "Destroyed":
+            case HIT:
+            case DESTROYED:
                 icon =  '*';
                 break;
         }
@@ -29,7 +30,7 @@ public class ShipField implements PieceOfField{
     }
 
     @Override
-    public String shoot() {
+    public State shoot() {
         ship.getHit();
         return ship.getState();
     }

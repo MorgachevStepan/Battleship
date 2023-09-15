@@ -53,13 +53,13 @@ public abstract class Ship {
         }
     }
 
-    public String getState(){
+    public State getState(){
         if(shipLives == shipLivesTotal)
-            return "No hit";
+            return State.NO_HIT;
         else if(shipLives < shipLivesTotal && shipLives > 0)
-            return "Hit";
+            return State.HIT;
         else
-            return "Destroyed";
+            return State.DESTROYED;
     }
 
     @Override

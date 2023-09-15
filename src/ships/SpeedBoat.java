@@ -9,6 +9,6 @@ import utils.Constants;
  */
 public class SpeedBoat extends Ship{
     public SpeedBoat(Coordinates position, Orientation orientation) {
-        super(position, orientation, Constants.SPEEDBOAT_SIZE);
+        super(position, orientation, ShipSize.SPEEDBOAT_SIZE);
     }
 }

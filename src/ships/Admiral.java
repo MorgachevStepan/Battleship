@@ -62,8 +62,8 @@ public class Admiral {
     private void setShip(Ship ship){
         for (int i = 0; i < ship.getShipLives(); i++)
             if(ship.getOrientation().toString().equals("HORIZONTAL"))
-                field[ship.getPosition().getyCord()][ship.getPosition().getxCord() + i] = new ShipField();
+                field[ship.getPosition().getyCord()][ship.getPosition().getxCord() + i] = new ShipField(ship);
             else
-                field[ship.getPosition().getyCord() + i][ship.getPosition().getxCord()] = new ShipField();
+                field[ship.getPosition().getyCord() + i][ship.getPosition().getxCord()] = new ShipField(ship);
     }
 }

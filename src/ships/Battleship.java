@@ -9,6 +9,6 @@ import utils.Constants;
  */
 public class Battleship extends Ship {
     public Battleship(Coordinates position, Orientation orientation) {
-        super(position, orientation, Constants.BATTLESHIP_SIZE);
+        super(position, orientation, ShipSize.BATTLESHIP_SIZE);
     }
 }

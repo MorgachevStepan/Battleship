@@ -9,6 +9,6 @@ import utils.Constants;
  */
 public class Destroyer extends Ship {
     public Destroyer(Coordinates position, Orientation orientation) {
-        super(position, orientation, Constants.DESTROYER_SIZE);
+        super(position, orientation, ShipSize.DESTROYER_SIZE);
     }
 }

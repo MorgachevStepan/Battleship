@@ -30,4 +30,12 @@ public class Coordinates {
     public void setyCord(int yCord) {
         this.yCord = yCord;
     }
+
+    @Override
+    public String toString() {
+        return "Coordinates{" +
+                "xCord=" + xCord +
+                ", yCord=" + yCord +
+                '}';
+    }
 }

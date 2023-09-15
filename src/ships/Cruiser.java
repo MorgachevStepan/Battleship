@@ -9,6 +9,6 @@ import utils.Constants;
  */
 public class Cruiser extends Ship {
     public Cruiser(Coordinates position, Orientation orientation) {
-        super(position, orientation, Constants.CRUISER_SIZE);
+        super(position, orientation, ShipSize.CRUISER_SIZE);
     }
 }

@@ -1,7 +1,6 @@
 package Player;
 
 import ships.Ship;
-import utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,6 @@ public class Player {
     private List<Ship> ships;
 
     public Player(){
-        playerLives = Constants.PLAYER_LIVES;
         ships = new ArrayList<>(); //TODO
     }
 }

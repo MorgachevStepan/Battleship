@@ -1,7 +1,6 @@
 package ships;
 
 import field.Coordinates;
-import utils.Constants;
 
 /**
  * @author Stepan Morgachev

@@ -20,10 +20,9 @@ public class Player {
     private Map<Coordinates, State> playerTurns;
 
     public Player(){
-        playerLives = 20;
+        playerLives = 4;
         playerTurns = new HashMap<>();
         field = new Field();
-        //field.initialize();
     }
 
     public Field getField(){
@@ -48,5 +47,9 @@ public class Player {
 
     public State getState(Coordinates coordinates){
         return  playerTurns.get(coordinates);
+    }
+
+    public int getPlayerLives() {
+        return playerLives;
     }
 }

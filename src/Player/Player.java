@@ -17,9 +17,11 @@ import java.util.Map;
 public class Player {
     private int playerLives;
     private final Field field;
+    private final String playerName;
     private Map<Coordinates, State> playerTurns;
 
-    public Player(){
+    public Player(String playerName){
+        this.playerName = playerName;
         playerLives = 4;
         playerTurns = new HashMap<>();
         field = new Field();
@@ -51,5 +53,9 @@ public class Player {
 
     public int getPlayerLives() {
         return playerLives;
+    }
+
+    public String getPlayerName() {
+        return playerName;
     }
 }

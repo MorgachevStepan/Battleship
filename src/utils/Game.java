@@ -3,6 +3,8 @@ package utils;
 import Player.Player;
 import ships.Admiral;
 
+import java.util.Scanner;
+
 /**
  * @author Stepan Morgachev
  * @date 16.09.2023 14:08
@@ -15,10 +17,14 @@ public class Game {
     private final Controller firstPlayerController;
     private final Controller secondPlayerController;
     private boolean playerTurn; //true - ходит первый игрок, false - второй игрок
+    private final Scanner scanner;
 
     public Game(){
-        firstPlayer = new Player();
-        secondPlayer = new Player();
+        scanner = new Scanner(System.in);
+        System.out.println("Введите имя первого игрока");
+        firstPlayer = new Player(scanner.nextLine());
+        System.out.println("Введите имя второго игрока");
+        secondPlayer = new Player(scanner.nextLine());
         firstPlayerAdmiral = new Admiral(firstPlayer);
         secondPlayerAdmiral = new Admiral(secondPlayer);
         firstPlayerController = new Controller(firstPlayer, secondPlayer);
@@ -31,7 +37,7 @@ public class Game {
     private void playGame() {
         while(firstPlayer.isAlive() && secondPlayer.isAlive()){
             if(playerTurn){
-                System.out.println("Ход первого игрока");
+                System.out.printf("Ходит %s \n", firstPlayer.getPlayerName());
                 switch (firstPlayerController.fire()){
                     case NO_HIT -> {
                         playerTurn = false;
@@ -46,8 +52,7 @@ public class Game {
                 }
             }
             else{
-                System.out.println("Ход второго игрока");
-                System.out.println("Здоровье первого игрока - " + firstPlayer.getPlayerLives() + "Здоровье второго игрока" + secondPlayer.getPlayerLives());
+                System.out.printf("Ход %s \n", firstPlayer.getPlayerName());
                 switch (secondPlayerController.fire()){
                     case NO_HIT -> {
                         playerTurn = true;
@@ -63,16 +68,16 @@ public class Game {
             }
         }
         if (firstPlayer.isAlive())
-            System.out.println("Победил первый игрок");
+            System.out.printf("Победил %s \n", firstPlayer.getPlayerName());
         else{
-            System.out.println("Победил второй игрок");
+            System.out.printf("Победил %s \n", secondPlayer.getPlayerName());
         }
     }
 
     private void arrangeShips(){
-        System.out.println("Первый игрок расставляет корабли");
+        System.out.printf("%s расставляет корабли \n", firstPlayer.getPlayerName());
         firstPlayerAdmiral.arrangeShips();
-        System.out.println("Второй игрок расставляет корабли");
+        System.out.printf("%s расставляет корабли \n", secondPlayer.getPlayerName());
         secondPlayerAdmiral.arrangeShips();
     }
 }

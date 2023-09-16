@@ -2,8 +2,6 @@ package utils;
 
 import Player.Player;
 import field.Coordinates;
-import field.Field;
-import field.PieceOfField;
 import ships.State;
 
 import java.util.Scanner;
@@ -40,9 +38,7 @@ public class Controller {
         shooter.getPlayerTurns().put(coordinates, state);
 
         switch (state){
-            case NO_HIT -> {
-                resultState = State.NO_HIT;
-            }
+            case NO_HIT -> resultState = State.NO_HIT;
             case HIT -> {
                 resultState = State.HIT;
                 defender.decrementLives();
@@ -61,13 +57,9 @@ public class Controller {
     private boolean validPosition(Coordinates coordinates) {
         int xCoord = coordinates.getxCord();
         int yCoord = coordinates.getyCord();
-        if(xCoord > 10 || xCoord < 1 || yCoord > 10 || yCoord < 1
-                || defender.getPieceOfField(xCoord, yCoord).getIcon() == '*'
-                || defender.getPieceOfField(xCoord, yCoord).getIcon() == 'M')
-            return false;
-        else {
-            return true;
-        }
+        return xCoord <= 10 && xCoord >= 1 && yCoord <= 10 && yCoord >= 1
+                && defender.getPieceOfField(xCoord, yCoord).getIcon() != '*'
+                && defender.getPieceOfField(xCoord, yCoord).getIcon() != 'M';
     }
 
     public void render(){

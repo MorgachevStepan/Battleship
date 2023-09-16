@@ -1,10 +1,14 @@
 package Player;
 
+import field.Coordinates;
 import field.Field;
 import ships.Ship;
+import ships.State;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Stepan Morgachev
@@ -13,15 +17,21 @@ import java.util.List;
 public class Player {
     private int playerLives;
     private final Field field;
+    private Map<Coordinates, State> playerTurns;
 
     public Player(){
         playerLives = 20;
+        playerTurns = new HashMap<>();
         field = new Field();
-        field.initialize();
+        //field.initialize();
     }
 
     public Field getField(){
         return field;
+    }
+
+    public Map<Coordinates, State> getPlayerTurns() {
+        return playerTurns;
     }
 
     public void decrementLives(){
@@ -30,5 +40,13 @@ public class Player {
 
     public boolean isAlive(){
         return playerLives > 0;
+    }
+
+    public boolean isPieceOfFieldIsEmpty(Coordinates coordinates){
+        return !playerTurns.containsKey(coordinates);
+    }
+
+    public State getState(Coordinates coordinates){
+        return  playerTurns.get(coordinates);
     }
 }

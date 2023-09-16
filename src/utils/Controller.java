@@ -19,7 +19,7 @@ public class Controller {
 
     public Controller(Player player){
         this.player = player;
-        fieldRender = new FieldRender(player.getField().getField());
+        fieldRender = new FieldRender(player);
         scanner = new Scanner(System.in);
     }
 
@@ -33,6 +33,8 @@ public class Controller {
         }while (!validPosition(coordinates));
 
         State state = player.getField().getPieceOfField(coordinates.getxCord(), coordinates.getyCord()).shoot();
+
+        player.getPlayerTurns().put(coordinates, state);
 
         switch (state){
             case NO_HIT -> System.out.println("Вы промахнулись");

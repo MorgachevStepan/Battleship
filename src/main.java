@@ -1,5 +1,6 @@
 import Player.Player;
 import field.Field;
+import ships.Admiral;
 import utils.Controller;
 
 /**
@@ -9,6 +10,8 @@ import utils.Controller;
 public class main {
     public static void main(String[] args) {
         Player player = new Player();
+        Admiral admiral = new Admiral(player);
+        admiral.arrangeShips();
         Controller controller = new Controller(player);
         while (player.isAlive()){
             controller.fire();

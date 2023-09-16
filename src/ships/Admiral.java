@@ -1,5 +1,6 @@
 package ships;
 
+import Player.Player;
 import field.Coordinates;
 import field.PieceOfField;
 import field.ShipField;
@@ -18,13 +19,15 @@ public class Admiral {
     private List<Ship> ships;
     private ShipValidator shipValidator;
     private FieldRender fieldRender;
-    private PieceOfField[][] field;
+    //private PieceOfField[][] field;
+    private Player player;
 
-    public Admiral(PieceOfField[][] field){
-        this.field = field;
+    public Admiral(Player player){
+        this.player = player;
+        //this.field = field;
         ships = new ArrayList<>();
-        shipValidator = new ShipValidator(field);
-        fieldRender = new FieldRender(field);
+        shipValidator = new ShipValidator(player.getField().getField());
+        fieldRender = new FieldRender(player);
         DEFAULT_POSITION = new Coordinates(-1, -1);
         DEFAULT_ORIENTATION = Orientation.HORIZONTAL;
         createFleet();
@@ -62,8 +65,8 @@ public class Admiral {
     private void setShip(Ship ship){
         for (int i = 0; i < ship.getShipLives(); i++)
             if(ship.getOrientation() == Orientation.HORIZONTAL)
-                field[ship.getPosition().getyCord()][ship.getPosition().getxCord() + i] = new ShipField(ship);
+                player.getField().getField()[ship.getPosition().getyCord()][ship.getPosition().getxCord() + i] = new ShipField(ship);
             else
-                field[ship.getPosition().getyCord() + i][ship.getPosition().getxCord()] = new ShipField(ship);
+                player.getField().getField()[ship.getPosition().getyCord() + i][ship.getPosition().getxCord()] = new ShipField(ship);
     }
 }

@@ -1,5 +1,7 @@
 package utils;
 
+import Player.Player;
+import field.Coordinates;
 import field.PieceOfField;
 
 /**
@@ -8,25 +10,45 @@ import field.PieceOfField;
  */
 public class FieldRender {
     private final char[] FIELD_LETTERS = {'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж' , 'З', 'И', 'К'};
-    private PieceOfField[][] field;
+    private Player player;
 
-    public FieldRender(PieceOfField[][] field){
-        this.field = field;
+
+    public FieldRender(Player player){
+        this.player = player;
     }
 
 
     public void render() {
-        System.out.print("  |");
-        for (Character character: FIELD_LETTERS)
-            System.out.print(character.toString() + " |");
+        printLetters();
         System.out.println();
-        System.out.println("---------------------------------");
+        System.out.println("---------------------------------     ---------------------------------");
         for(int i = 1; i < 11; i++){
             System.out.print(i - 1 + " |");
             for(int j = 1; j < 11; j++)
-                System.out.print(field[i][j].getIcon() + " |");
+                System.out.print(player.getField().getField()[i][j].getIcon() + " |");
+            System.out.print("     ");
+            System.out.print(i - 1 + " |");
+            for (int j = 1; j < 11; j++)
+                if(player.getPlayerTurns().containsKey(new Coordinates(j, i))) {
+                    switch (player.getPlayerTurns().get(new Coordinates(j, i))) {
+                        case DESTROYED, HIT -> System.out.print("* |");
+                        case NO_HIT -> System.out.print("M |");
+                    }
+                }
+                else
+                    System.out.print("~ |");
             System.out.println();
-            System.out.println("---------------------------------");
+            System.out.println("---------------------------------     ---------------------------------");
         }
     }
+
+    private void printLetters(){
+        for(int i = 0; i < 2; i++) {
+            System.out.print("  |");
+            for (Character character : FIELD_LETTERS)
+                System.out.print(character.toString() + " |");
+            System.out.print("     ");
+        }
+    }
+
 }

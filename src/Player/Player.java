@@ -2,6 +2,7 @@ package Player;
 
 import field.Coordinates;
 import field.Field;
+import field.PieceOfField;
 import ships.Ship;
 import ships.State;
 
@@ -27,8 +28,8 @@ public class Player {
         field = new Field();
     }
 
-    public Field getField(){
-        return field;
+    public PieceOfField[][] getField(){
+        return field.getField();
     }
 
     public Map<Coordinates, State> getPlayerTurns() {
@@ -51,11 +52,11 @@ public class Player {
         return  playerTurns.get(coordinates);
     }
 
-    public int getPlayerLives() {
-        return playerLives;
-    }
-
     public String getPlayerName() {
         return playerName;
+    }
+
+    public PieceOfField getPieceOfField(int x, int y){
+        return field.getField()[y][x];
     }
 }

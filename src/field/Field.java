@@ -31,16 +31,11 @@ public class Field {
         }
     }
 
-/*    public void initialize(){
-        Admiral admiral = new Admiral();
-        admiral.arrangeShips();
-    }*/
-
     public PieceOfField getPieceOfField(int x, int y){
         return field[y][x];
     }
 
-    public PieceOfField[][] getField(){
+    public PieceOfField[][] getField() {
         return field;
     }
 }

@@ -24,9 +24,8 @@ public class Admiral {
 
     public Admiral(Player player){
         this.player = player;
-        //this.field = field;
         ships = new ArrayList<>();
-        shipValidator = new ShipValidator(player.getField().getField());
+        shipValidator = new ShipValidator(player.getField());
         fieldRender = new FieldRender(player);
         DEFAULT_POSITION = new Coordinates(-1, -1);
         DEFAULT_ORIENTATION = Orientation.HORIZONTAL;
@@ -65,8 +64,8 @@ public class Admiral {
     private void setShip(Ship ship){
         for (int i = 0; i < ship.getShipLives(); i++)
             if(ship.getOrientation() == Orientation.HORIZONTAL)
-                player.getField().getField()[ship.getPosition().getyCord()][ship.getPosition().getxCord() + i] = new ShipField(ship);
+                player.getField()[ship.getPosition().getyCord()][ship.getPosition().getxCord() + i] = new ShipField(ship);
             else
-                player.getField().getField()[ship.getPosition().getyCord() + i][ship.getPosition().getxCord()] = new ShipField(ship);
+                player.getField()[ship.getPosition().getyCord() + i][ship.getPosition().getxCord()] = new ShipField(ship);
     }
 }

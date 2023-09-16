@@ -34,7 +34,7 @@ public class Controller {
             coordinates = new Coordinates(xCoord, yCoord);
         }while (!validPosition(coordinates));
 
-        State state = defender.getField().getPieceOfField(coordinates.getxCord(), coordinates.getyCord()).shoot();
+        State state = defender.getPieceOfField(coordinates.getxCord(), coordinates.getyCord()).shoot();
         State resultState = null;
 
         shooter.getPlayerTurns().put(coordinates, state);
@@ -62,11 +62,15 @@ public class Controller {
         int xCoord = coordinates.getxCord();
         int yCoord = coordinates.getyCord();
         if(xCoord > 10 || xCoord < 1 || yCoord > 10 || yCoord < 1
-                || defender.getField().getPieceOfField(xCoord, yCoord).getIcon() == '*'
-                || defender.getField().getPieceOfField(xCoord, yCoord).getIcon() == 'M')
+                || defender.getPieceOfField(xCoord, yCoord).getIcon() == '*'
+                || defender.getPieceOfField(xCoord, yCoord).getIcon() == 'M')
             return false;
         else {
             return true;
         }
+    }
+
+    public void render(){
+        fieldRender.render();
     }
 }

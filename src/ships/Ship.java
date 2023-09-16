@@ -39,10 +39,6 @@ public abstract class Ship {
         return shipLives;
     }
 
-    public void setShipLives(int shipLives) {
-        this.shipLives = shipLives;
-    }
-
     public void getHit(){
         shipLives--;
     }
@@ -54,15 +50,5 @@ public abstract class Ship {
             return State.HIT;
         else
             return State.DESTROYED;
-    }
-
-    @Override
-    public String toString() {
-        return "Ship{" +
-                "position=" + position +
-                ", orientation=" + orientation +
-                ", shipLivesTotal=" + shipLivesTotal +
-                ", shipLives=" + shipLives +
-                '}';
     }
 }

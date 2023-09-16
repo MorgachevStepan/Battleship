@@ -19,11 +19,16 @@ public class ShipValidator {
     }
     public Orientation askShipOrientation() {
         String orientation;
+        int loc;
         do{
-            System.out.println("Как вы хотите разместить корабль горизонтально (HORIZONTAL) или вертикально (VERTICAL)");
-            orientation = scanner.nextLine();
-        } while (!(Orientation.HORIZONTAL.toString().equals(orientation) || Orientation.VERTICAL.toString().equals(orientation)));
-        return Orientation.valueOf(orientation);
+            System.out.println("Как вы хотите разместить корабль горизонтально (0) или вертикально (1)");
+            //orientation = scanner.nextLine();
+            loc = scanner.nextInt();
+        } while (!(Orientation.HORIZONTAL.ordinal() == loc || Orientation.VERTICAL.ordinal() == loc));
+        if(loc == 0)
+            return Orientation.HORIZONTAL;
+        else
+            return Orientation.VERTICAL;
     }
 
     public Coordinates askShipCoordinates(Ship ship, Orientation orientation) {

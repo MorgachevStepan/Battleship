@@ -17,10 +17,9 @@ public class Game {
     private final Controller firstPlayerController;
     private final Controller secondPlayerController;
     private boolean playerTurn; //true - ходит первый игрок, false - второй игрок
-    private final Scanner scanner;
 
     public Game(){
-        scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Введите имя первого игрока");
         firstPlayer = new Player(scanner.nextLine());
         System.out.println("Введите имя второго игрока");
@@ -41,14 +40,11 @@ public class Game {
                 switch (firstPlayerController.fire()){
                     case NO_HIT -> {
                         playerTurn = false;
+                        secondPlayerController.render();
                         System.out.println("Вы промахнулись");
                     }
-                    case DESTROYED -> {
-                        System.out.println("Вы уничтожили корабль");
-                    }
-                    case HIT -> {
-                        System.out.println("Вы попали по кораблю");
-                    }
+                    case DESTROYED -> System.out.println("Вы уничтожили корабль");
+                    case HIT -> System.out.println("Вы попали по кораблю");
                 }
             }
             else{
@@ -56,14 +52,11 @@ public class Game {
                 switch (secondPlayerController.fire()){
                     case NO_HIT -> {
                         playerTurn = true;
+                        firstPlayerController.render();
                         System.out.println("Вы промахнулись");
                     }
-                    case DESTROYED -> {
-                        System.out.println("Вы уничтожили корабль");
-                    }
-                    case HIT -> {
-                        System.out.println("Вы попали по кораблю");
-                    }
+                    case DESTROYED -> System.out.println("Вы уничтожили корабль");
+                    case HIT -> System.out.println("Вы попали по кораблю");
                 }
             }
         }
@@ -75,9 +68,12 @@ public class Game {
     }
 
     private void arrangeShips(){
+        firstPlayerController.render();
         System.out.printf("%s расставляет корабли \n", firstPlayer.getPlayerName());
         firstPlayerAdmiral.arrangeShips();
+        secondPlayerController.render();
         System.out.printf("%s расставляет корабли \n", secondPlayer.getPlayerName());
         secondPlayerAdmiral.arrangeShips();
+        firstPlayerController.render();
     }
 }

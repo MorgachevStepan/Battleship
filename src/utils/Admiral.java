@@ -1,10 +1,9 @@
-package ships;
+package utils;
 
 import Player.Player;
 import field.Coordinates;
-import field.PieceOfField;
 import field.ShipField;
-import utils.FieldRender;
+import ships.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +15,10 @@ import java.util.List;
 public class Admiral {
     private final Coordinates DEFAULT_POSITION;
     private final Orientation DEFAULT_ORIENTATION;
-    private List<Ship> ships;
-    private ShipValidator shipValidator;
-    private FieldRender fieldRender;
-    //private PieceOfField[][] field;
-    private Player player;
+    private final List<Ship> ships;
+    private final ShipValidator shipValidator;
+    private final FieldRender fieldRender;
+    private final Player player;
 
     public Admiral(Player player){
         this.player = player;
@@ -50,7 +48,7 @@ public class Admiral {
 
     private void createFleet(){
         ships.add(new Battleship(DEFAULT_POSITION, DEFAULT_ORIENTATION));
-        /*ships.add(new Cruiser(DEFAULT_POSITION, DEFAULT_ORIENTATION));
+        ships.add(new Cruiser(DEFAULT_POSITION, DEFAULT_ORIENTATION));
         ships.add(new Cruiser(DEFAULT_POSITION, DEFAULT_ORIENTATION));
         ships.add(new Destroyer(DEFAULT_POSITION, DEFAULT_ORIENTATION));
         ships.add(new Destroyer(DEFAULT_POSITION, DEFAULT_ORIENTATION));
@@ -58,7 +56,7 @@ public class Admiral {
         ships.add(new SpeedBoat(DEFAULT_POSITION, DEFAULT_ORIENTATION));
         ships.add(new SpeedBoat(DEFAULT_POSITION, DEFAULT_ORIENTATION));
         ships.add(new SpeedBoat(DEFAULT_POSITION, DEFAULT_ORIENTATION));
-        ships.add(new SpeedBoat(DEFAULT_POSITION, DEFAULT_ORIENTATION));*/
+        ships.add(new SpeedBoat(DEFAULT_POSITION, DEFAULT_ORIENTATION));
     }
 
     private void setShip(Ship ship){

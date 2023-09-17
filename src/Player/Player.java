@@ -3,12 +3,9 @@ package Player;
 import field.Coordinates;
 import field.Field;
 import field.PieceOfField;
-import ships.Ship;
 import ships.State;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,7 +16,7 @@ public class Player {
     private int playerLives;
     private final Field field;
     private final String playerName;
-    private Map<Coordinates, State> playerTurns;
+    private final Map<Coordinates, State> playerTurns;
 
     public Player(String playerName){
         this.playerName = playerName;

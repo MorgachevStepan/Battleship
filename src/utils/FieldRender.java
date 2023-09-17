@@ -2,7 +2,6 @@ package utils;
 
 import Player.Player;
 import field.Coordinates;
-import field.PieceOfField;
 
 /**
  * @author Stepan Morgachev
@@ -10,7 +9,7 @@ import field.PieceOfField;
  */
 public class FieldRender {
     private final char[] FIELD_LETTERS = {'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж' , 'З', 'И', 'К'};
-    private Player player;
+    private final Player player;
 
 
     public FieldRender(Player player){
@@ -29,8 +28,8 @@ public class FieldRender {
             System.out.print("     ");
             System.out.print(i - 1 + " |");
             for (int j = 1; j < 11; j++)
-                if(player.getPlayerTurns().containsKey(new Coordinates(j, i))) {
-                    switch (player.getPlayerTurns().get(new Coordinates(j, i))) {
+                if(player.isPieceOfFieldIsEmpty(new Coordinates(j, i))) {
+                    switch (player.getState(new Coordinates(j, i))) {
                         case DESTROYED, HIT -> System.out.print("* |");
                         case NO_HIT -> System.out.print("M |");
                     }

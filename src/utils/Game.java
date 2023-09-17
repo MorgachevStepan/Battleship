@@ -1,7 +1,6 @@
 package utils;
 
 import Player.Player;
-import ships.Admiral;
 
 import java.util.Scanner;
 
@@ -30,10 +29,9 @@ public class Game {
         secondPlayerController = new Controller(secondPlayer, firstPlayer);
         playerTurn = true;
         arrangeShips();
-        playGame();
     }
 
-    private void playGame() {
+    public void playGame() {
         while(firstPlayer.isAlive() && secondPlayer.isAlive()){
             if(playerTurn){
                 System.out.printf("Ходит %s \n", firstPlayer.getPlayerName());

@@ -1,7 +1,9 @@
-package ships;
+package utils;
 
 import field.Coordinates;
 import field.PieceOfField;
+import ships.Orientation;
+import ships.Ship;
 
 import java.util.Scanner;
 
@@ -10,22 +12,20 @@ import java.util.Scanner;
  * @date 14.09.2023 13:51
  */
 public class ShipValidator {
-    private Scanner scanner;
-    private PieceOfField[][] field;
+    private final Scanner scanner;
+    private final PieceOfField[][] field;
 
     public ShipValidator(PieceOfField[][] field){
         scanner = new Scanner(System.in);
         this.field = field;
     }
     public Orientation askShipOrientation() {
-        String orientation;
-        int loc;
+        int orientation;
         do{
             System.out.println("Как вы хотите разместить корабль горизонтально (0) или вертикально (1)");
-            //orientation = scanner.nextLine();
-            loc = scanner.nextInt();
-        } while (!(Orientation.HORIZONTAL.ordinal() == loc || Orientation.VERTICAL.ordinal() == loc));
-        if(loc == 0)
+            orientation = scanner.nextInt();
+        } while (!(Orientation.HORIZONTAL.ordinal() == orientation || Orientation.VERTICAL.ordinal() == orientation));
+        if(orientation == 0)
             return Orientation.HORIZONTAL;
         else
             return Orientation.VERTICAL;
@@ -38,7 +38,7 @@ public class ShipValidator {
             int yCoord = scanner.nextInt() + 1;
             int xCoord = scanner.nextInt() + 1;
             coordinates = new Coordinates(xCoord, yCoord);
-        }while (!isValidCoordinates(coordinates, ship.getShipLives(), ship.getOrientation()));
+        }while (!isValidCoordinates(coordinates, ship.getShipLives(), orientation));
         return coordinates;
     }
 

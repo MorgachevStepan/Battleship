@@ -3,6 +3,8 @@ package utils;
 import Player.Player;
 import field.Coordinates;
 
+import static ships.State.*;
+
 /**
  * @author Stepan Morgachev
  * @date 14.09.2023 19:59
@@ -28,7 +30,7 @@ public class FieldRender {
             System.out.print("     ");
             System.out.print(i - 1 + " |");
             for (int j = 1; j < 11; j++)
-                if(player.isPieceOfFieldIsEmpty(new Coordinates(j, i))) {
+                if(!player.isPieceOfFieldIsEmpty(new Coordinates(j, i))) {
                     switch (player.getState(new Coordinates(j, i))) {
                         case DESTROYED, HIT -> System.out.print("* |");
                         case NO_HIT -> System.out.print("M |");
